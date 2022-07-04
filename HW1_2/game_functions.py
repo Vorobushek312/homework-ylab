@@ -72,28 +72,40 @@ def check_play_button(aliens, steps, stats, play_button, mouse_x, mouse_y):
     button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
     if button_clicked and not stats.game_active: 
         # if play_button.rect.collidepoint(mouse_x, mouse_y):
-        stats.game_active = True
         aliens.empty()
         steps.empty()
+        stats.game_active = True
         
-def chek_win(aliens, steps, loss_combo, stats):
+        
+def chek_win(aliens, steps, loss_combo_2, stats):
     all_steps = []
+    all_steps_x = []
     check_loss = False
     for step in steps.sprites():
         one_step = []
         one_step.append(step.rect.x)
         one_step.append(step.rect.y)
         all_steps.append(one_step)
-    for combo in loss_combo:
+    for step_x in aliens.sprites():
+        one_step_x = []
+        one_step_x.append(step_x.rect.x)
+        one_step_x.append(step_x.rect.y)
+        all_steps_x.append(one_step_x)
+    for combo in loss_combo_2:
+        count_o = 0
+        count_x = 0
         if check_loss == True:
             break
         for combo_one in combo:
             if combo_one in all_steps:
-                check_loss = True
+                count_o += 1
+                if count_o == 5:
+                    check_loss = True
+                    stats.game_active = False
                 continue
-            else:
-                check_loss = False
-                break
-            
-    if check_loss == True:
-        stats.game_active = False
+            elif combo_one in all_steps_x:
+                count_x += 1
+                if count_x == 5:
+                    check_loss = True
+                    stats.game_active = False
+                continue
