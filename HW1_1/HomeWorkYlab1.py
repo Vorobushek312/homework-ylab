@@ -29,7 +29,7 @@ def all_range_updata(*args):
         if index_value == len_args:
             step = range_a_to_b(a, a_last)
             answer += step
-            text += f'{arg}[{answer}] = {answer}'
+            text += f'{a_last}[{answer}] = {answer}'
             return answer, text
 
 
