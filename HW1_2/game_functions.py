@@ -7,7 +7,7 @@ from alien import Alien
 import random
 
 
-def check_event(ai_settings, screen, stats, play_button,  player_x, aliens, steps):
+def check_event(ai_settings, screen, stats, play_button,  player_x, aliens, steps, loss_combo_2):
     """Обрабатывает нажатия клавиш и события мыши."""
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -33,16 +33,58 @@ def check_event(ai_settings, screen, stats, play_button,  player_x, aliens, step
                 if pygame.sprite.spritecollideany(new_step, steps, collided = None) == None:
                     if pygame.sprite.spritecollideany(new_step, aliens, collided = None) == None:
                         steps.add(new_step)
+                        comb = 0
                         while True:
+                            comb += 1
                             new_alien = Alien(ai_settings, screen)
+                            print(new_alien.rect.x, new_alien.rect.y)
+                            print(comb)
                             if pygame.sprite.spritecollideany(new_alien, steps, collided=None) == None:
                                 if pygame.sprite.spritecollideany(new_alien, aliens, collided=None) == None:
+                                    if comb > 150:
+                                        aliens.add(new_alien)
+                                        break
                                     aliens.add(new_alien)
-                                    break
+                                    all_steps_x = []
+                                    for step_x in aliens.sprites():
+                                        one_step_x = []
+                                        one_step_x.append(step_x.rect.x)
+                                        one_step_x.append(step_x.rect.y)
+                                        all_steps_x.append(one_step_x)
+                                    for combo in loss_combo_2:
+                                        count_x = 0
+                                        for combo_one in combo:
+                                            if combo_one in all_steps_x:
+                                                count_x += 1
+                                                if count_x == 5:
+                                                    print('del', new_alien.rect.x, new_alien.rect.y)
+                                                    aliens.remove(new_alien)                
+                                    if pygame.sprite.Sprite.alive(new_alien) == True:
+                                        break
                             elif pygame.sprite.spritecollideany(new_alien, aliens, collided=None) == None:
                                 if pygame.sprite.spritecollideany(new_alien, steps, collided=None) == None:
+                                    if comb > 150:
+                                        aliens.add(new_alien)
+                                        break
                                     aliens.add(new_alien)
-                                    break
+                                    all_steps_x = []
+                                    for step_x in aliens.sprites():
+                                        one_step_x = []
+                                        one_step_x.append(step_x.rect.x)
+                                        one_step_x.append(step_x.rect.y)
+                                        all_steps_x.append(one_step_x)
+                                    for combo in loss_combo_2:
+                                        count_x = 0
+                                        for combo_one in combo:
+                                            if combo_one in all_steps_x:
+                                                count_x += 1
+                                                if count_x == 5:
+                                                    print('del', new_alien.rect.x, new_alien.rect.y)
+                                                    aliens.remove(new_alien)                
+                                    if pygame.sprite.Sprite.alive(new_alien) == True:
+                                        break
+                                   
+                                                
             elif event.key == pygame.K_q:
                 sys.exit()
                 

@@ -27,7 +27,7 @@ def run_game():
     # Запуск основного цикла игры.
     while True:
         # Отслеживание событий клавиатуры и мыши.
-        gf.check_event(ai_settings, screen, stats, play_button, player_x, aliens, steps)
+        gf.check_event(ai_settings, screen, stats, play_button, player_x, aliens, steps, loss_combo_2)
         
         # При каждом проходе цикла перерисовывается экран.
         gf.update_screen(ai_settings, screen, stats,  player_x, aliens, steps,  play_button)
