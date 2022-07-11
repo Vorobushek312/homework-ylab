@@ -1,6 +1,7 @@
 .idea/
 .idea/workspace.xml
 .vscode/
+.DS_Store/
 
 
 
@@ -16,6 +17,9 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 media
+HW1_2/__pycache__/
+HW_2_2/solid_code/__pycache__/
+
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
