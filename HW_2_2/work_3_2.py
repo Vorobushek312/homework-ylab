@@ -22,5 +22,5 @@ def decorator_arg(func):
 def func(call_count = 3, start_sleep_time = 1, factor = 3, border_sleep_time = 15):
     return False
 
-
-func(call_count = 3, start_sleep_time = 1, factor = 2, border_sleep_time = 20)
+if __name__ == '__main__':
+    func(call_count = 3, start_sleep_time = 1, factor = 2, border_sleep_time = 20)

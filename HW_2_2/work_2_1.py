@@ -20,7 +20,7 @@ my_tuple = (1, 2, 3, 4,)
 my_set = {1, 2, 3, 4, '2'}
 my_frozenset = frozenset('qwer')
       
-
-cyclic_iterator = CyclicIterator(my_frozenset)
-for i in cyclic_iterator:
-    print(i)
+if __name__ == '__main__':
+    cyclic_iterator = CyclicIterator(my_frozenset)
+    for i in cyclic_iterator:
+        print(i)
